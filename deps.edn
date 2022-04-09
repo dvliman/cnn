@@ -1,0 +1,18 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        clj-http/clj-http {:mvn/version "3.12.3"}
+        hickory/hickory {:mvn/version "0.7.1"}
+        hiccup/hiccup {:mvn/version "2.0.0-alpha2"}
+        org.clojure/core.memoize {:mvn/version "1.0.257"}
+        cheshire/cheshire {:mvn/version "5.10.2"}
+        info.sunng/ring-jetty9-adapter {:mvn/version "0.17.5"}}
+ :aliases
+ {:run-m {:main-opts ["-m" "dvliman.cnn"]}
+  :build {:deps {io.github.seancorfield/build-clj
+                 {:git/tag "v0.6.3" :git/sha "9b8e09b"
+                  :deps/root "slim"}}
+          :ns-default build}
+  :test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
+                      io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.0" :git/sha "48c3c67"}}}}}
