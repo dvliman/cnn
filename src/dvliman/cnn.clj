@@ -40,19 +40,20 @@
   (-> (client/get url) :body parse as-hickory))
 
 (defn scrape []
+  (prn "scraping...")
   (->> (fetch base-url)
        parse-frontpage
        (map news-url)
        (map (comp parse-newspage fetch))))
 
-(defn cached-scrape []
-  (memo/ttl scrape {} :ttl/threshold (* 3600 1000)))
-
+(def cached-scrape
+  (memo/ttl scrape {} :ttl/threshold (* 3600 1000))) ;; 1 hour
 
 (defn handler [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (json/encode (scrape))})
+   :body (json/encode (cached-scrape))})
 
 (defn -main [& args]
-  (run-jetty handler {:port 3000}))
+  (prn "starting server...")
+  (jetty/run-jetty handler {:port 3000}))

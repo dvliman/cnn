@@ -7,7 +7,7 @@
         cheshire/cheshire {:mvn/version "5.10.2"}
         info.sunng/ring-jetty9-adapter {:mvn/version "0.17.5"}}
  :aliases
- {:run-m {:main-opts ["-m" "dvliman.cnn"]}
+ {:run-main {:main-opts ["-m" "dvliman.cnn"]}
   :build {:deps {io.github.seancorfield/build-clj
                  {:git/tag "v0.6.3" :git/sha "9b8e09b"
                   :deps/root "slim"}}
